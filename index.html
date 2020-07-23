@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hello World!</title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
+          integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+<div id="content">
+    <h1>Sleep timer</h1>
+    <p>This app allows you to shut down your computer on a time you decide upfront.</p>
+    <h3>Never go to bed at 3 a.m. again! 👌</h3>
+    <form class="pure-form pure-form-stacked" id="form">
+        <fieldset>
+            <legend>When do you want to sleep?</legend>
+            <input type="time" id="stacked-time" placeholder="Time">
+            <button type="submit" class="pure-button pure-button-primary">Validate</button>
+        </fieldset>
+    </form>
+</div>
+<!-- You can also require other files to run in this process -->
+<script src="./renderer.js"></script>
+
+</body>
+</html>
