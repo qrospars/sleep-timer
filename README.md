@@ -25,4 +25,4 @@ go through it manually 😊
 
 ## License
 
-[CC0 1.0 (Public Domain)](LICENSE.md)
+[GNU GPLv3 ](LICENSE.md)
