@@ -1,7 +1,7 @@
 {
-  "name": "electron-quick-start",
+  "name": "sleep-timer",
   "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "description": "A minimal sleep timer application",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
@@ -17,15 +17,14 @@
       "icon": "mug_big.ico"
     }
   },
-  "repository": "https://github.com/electron/electron-quick-start",
+  "repository": "https://github.com/qrospars/sleep-timer/",
   "keywords": [
     "Electron",
     "quick",
-    "start",
-    "tutorial",
-    "demo"
+    "timer",
+    "sleep"
   ],
-  "author": "GitHub",
+  "author": "Quentin Rospars",
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": "^9.1.1",
