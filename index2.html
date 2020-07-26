@@ -13,6 +13,9 @@
 </head>
 <body>
 <div id="content">
+    <p>
+        <span id="timeLeft"></span>
+    </p>
     <form class="pure-form pure-form-stacked" id="form2">
         <fieldset>
             <legend>Do you want to cancel?</legend>
@@ -22,6 +25,13 @@
 </div>
 <!-- You can also require other files to run in this process -->
 <script src="./renderer.js"></script>
+<script>
+    require('electron').ipcRenderer.on('changeCountdown', (event, message) => {
+        const secondsLeftContent = message;
+        const timeLeft = document.querySelector("#timeLeft");
+        timeLeft.textContent = "00:"+secondsLeftContent;
+    });
+</script>
 
 </body>
 </html>

@@ -66,22 +66,52 @@ function createWindow() {
     // Open the DevTools.
     // mainWindow.webContents.openDevTools()
 }
+
 let interval;
+let timeInterval;
+
+let secondsLeft = 60;
+
+const clearObjectsAndIntervals = () => {
+    clearInterval(interval);
+    clearInterval(timeInterval);
+    secondsLeft = 60;
+};
+
 ipcMain.on('submitForm', function (event, date) {
+    let [hours, minutes] = date.toString().split(':');
     // Modify DOM
     mainWindow.loadFile('index2.html');
-    // Verify Time
-    let [hours, minutes] = date.toString().split(':');
-    interval = setInterval(function () {
-        let date = new Date(Date.now());
 
+
+    function getCurrHoursAndMinutes() {
+        let date = new Date(Date.now());
         let currHours = date.getHours();
         currHours = ("0" + currHours).slice(-2).toString();
-
         let currMinutes = date.getMinutes();
         currMinutes = ("0" + currMinutes).slice(-2).toString();
+        return [currHours, currMinutes];
+    }
+    timeInterval = setInterval(() => {
+        // Update countdown every second
+        const [currHours, currMinutes] = getCurrHoursAndMinutes();
+        if (currHours === hours && minutes - currMinutes <= 1) {
+            mainWindow.webContents.send('changeCountdown', secondsLeft.toString())
+            secondsLeft -= 1;
+        }
+    }, 1000);
 
-        if ( currHours=== hours && currMinutes === minutes) {
+    // Verify Time every 5 seconds
+    interval = setInterval(function () {
+        [currHours, currMinutes] = getCurrHoursAndMinutes();
+
+        if (currHours === hours && minutes - currMinutes <= 1) {
+            // If it is going to shutdown in one minute
+            // show the main window to prevent for being surprised
+            mainWindow.show();
+        }
+        if (currHours === hours && secondsLeft <= 45) {
+            clearObjectsAndIntervals();
             shutdown.hibernate({
                 // force: true,
                 sudo: true,
@@ -93,8 +123,8 @@ ipcMain.on('submitForm', function (event, date) {
 });
 
 ipcMain.on('submitForm2', function (event, date) {
+    clearObjectsAndIntervals();
     mainWindow.loadFile('index.html');
-    clearInterval(interval);
 });
 
 app.whenReady().then(() => {
