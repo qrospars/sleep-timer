@@ -112,7 +112,7 @@ ipcMain.on('submitForm', function (event, date) {
         }
         if (currHours === hours && secondsLeft <= 45) {
             clearObjectsAndIntervals();
-            shutdown.hibernate({
+            shutdown.shutdown({
                 // force: true,
                 sudo: true,
                 // debug: true,
