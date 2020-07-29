@@ -18,6 +18,7 @@ let mainWindow;
 function createWindow() {
     // Create the browser window.
     mainWindow = new BrowserWindow({
+        skipTaskbar: true,
         width: 800,
         height: 600,
         webPreferences: {
@@ -51,7 +52,7 @@ function createWindow() {
 
     mainWindow.on('minimize', function (event) {
         event.preventDefault();
-        mainWindow.hide();
+        // mainWindow.hide();
     });
 
     mainWindow.on('close', function (event) {
@@ -110,7 +111,7 @@ ipcMain.on('submitForm', function (event, date) {
             // show the main window to prevent for being surprised
             mainWindow.show();
         }
-        if (currHours === hours && secondsLeft <= 45) {
+        if (currHours === hours && secondsLeft <= 0) {
             clearObjectsAndIntervals();
             shutdown.shutdown({
                 // force: true,
